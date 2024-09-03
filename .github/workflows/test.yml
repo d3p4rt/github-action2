@@ -14,8 +14,15 @@ jobs:
         run: npm ci
       - name: run tests
         run: npm test
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install dependecies
+        run: echo "security check"
   deploy:
-    needs: test
+    needs: [test, security]
     runs-on: ubuntu-latest
     steps:
       - name: get code
